@@ -11,6 +11,7 @@ using namespace std;
 #include "LoadShaders.h"
 #include "glm\glm.hpp"
 #include "glm\gtc\matrix_transform.hpp"
+#include "math.h"
 
 enum VAO_IDs { Triangles, NumVAOs };
 enum Buffer_IDs { ArrayBuffer, NumBuffers };
@@ -20,7 +21,7 @@ GLuint VAOs[NumVAOs];
 GLuint Buffers[NumBuffers];
 GLuint location;
 
-const GLuint NumVertices = 4;
+const GLuint NumVertices = 6;
 
 float rotate_value = 0;
 
@@ -45,10 +46,13 @@ void init(void)
 
 	// Coordinates of vertices (Square)
 	GLfloat vertices[NumVertices][2] = {
-		{ -0.45, -0.45 }, 
-		{ 0.45, -0.45 },
-		{ 0.45, 0.45 },
-		{ -0.45, 0.45 }
+		{0.0f,   1.0f}, // top
+		{-1.0f,   0.5f},// left top
+		{-1.0f,  -0.5f}, // left bottom
+		{0.0f,  -1.0f},    // bottom
+		{1.0f,  -0.5f},    // right bottom
+		{1.0f,  0.5f }// top right
+
 	};
 
 	// Colors for vertices in {R, G, B} mode
@@ -56,7 +60,9 @@ void init(void)
 		{ 1,0,0 }, //Red
 		{ 0,1,0 }, //Green
 		{ 0,0,1 }, //Blue
-		{ 1,1,1 }  //White
+		{ 1,1,1 },
+		{ 0,1,0 }, //Green
+		{ 0,0,1 }
 	};
 
 	//Allocating buffers in VRAM and pushing vertex data (position and color) into the data.
@@ -91,14 +97,23 @@ void drawScene(void)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	//Creating rotation matrix using glm livrary. In this case, rotating rotat_value degree about Z axis (0, 0, 1)
-	glm::mat4 model_view = glm::rotate(glm::mat4(1.0), rotate_value, glm::vec3(0.0f, 0.0f, 1.0f));
+
+	glm::mat4 model_view = glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.0f, 0.0f));
+	model_view = glm::rotate(model_view, rotate_value, glm::vec3(0.0f, 0.0f, 1.0f));
+	model_view = glm::scale(model_view, glm::vec3(0.5f));
 
 	//The following function passes the generated rotation function into the vertex-shader
 	//I will explain this in details next week.
 	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
+	glDrawArrays(GL_POLYGON, 0, NumVertices);
 
-	//Starting the pipeline
-	glDrawArrays(GL_QUADS, 0, NumVertices);
+	model_view = glm::translate(glm::mat4(1.0), glm::vec3(-0.5f, 0.0f, 0.0f));
+	model_view = glm::rotate(model_view, -rotate_value, glm::vec3(0.0f, 0.0f, 1.0f));
+	model_view = glm::scale(model_view, glm::vec3(0.5));
+
+	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
+	glDrawArrays(GL_POLYGON, 0, NumVertices);
+
 	
 	//Flush the image onto the window (screen)
 	glFlush();
@@ -145,7 +160,4 @@ int main(int argc, char** argv)
 
 	//glutMainLoop enters the event processing loop
 	glutMainLoop();
-	
-	
-
 }
