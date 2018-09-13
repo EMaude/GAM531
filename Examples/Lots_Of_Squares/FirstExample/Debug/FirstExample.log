@@ -1,4 +1,2 @@
-﻿  Triangles.cpp
-c:\users\alireza\desktop\loading_lots_of_vertices_only_at_the_begginning\firstexample\triangles.cpp(108): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\alireza\desktop\loading_lots_of_vertices_only_at_the_begginning\firstexample\triangles.cpp(109): warning C4305: '+=': truncation from 'double' to 'float'
-  FirstExample.vcxproj -> C:\Users\alireza\Desktop\Loading_Lots_Of_Vertices_Only_At_The_Begginning\Debug\FirstExample.exe
+﻿Debug\LoadShaders.obj : warning LNK4042: object specified more than once; extras ignored
+LINK : fatal error LNK1104: cannot open file 'glew_static_vs2010_d.lib'

@@ -7,6 +7,8 @@
 
 using namespace std;
 
+#define USE_GL3
+
 #include "vgl.h"
 #include "LoadShaders.h"
 #include "glm\glm.hpp"
