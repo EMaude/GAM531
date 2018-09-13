@@ -1,0 +1,5 @@
+﻿  Triangles.cpp
+c:\users\alireza\downloads\opengl_starter_kit\firstexample\triangles.cpp(52): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
+c:\users\alireza\downloads\opengl_starter_kit\firstexample\triangles.cpp(52): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\alireza\downloads\opengl_starter_kit\firstexample\triangles.cpp(118): warning C4305: '+=': truncation from 'double' to 'float'
+  FirstExample.vcxproj -> C:\Users\alireza\Downloads\OpenGL_Starter_Kit\Debug\FirstExample.exe
