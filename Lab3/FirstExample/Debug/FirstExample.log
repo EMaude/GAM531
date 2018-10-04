@@ -1,0 +1,7 @@
+﻿  Triangles.cpp
+c:\users\emaude\documents\gam531\lab3\firstexample\triangles.cpp(50): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\lab3\firstexample\triangles.cpp(55): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\lab3\firstexample\triangles.cpp(60): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\lab3\firstexample\triangles.cpp(65): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\lab3\firstexample\triangles.cpp(235): warning C4305: '+=': truncation from 'double' to 'float'
+  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\Lab3\Debug\FirstExample.exe
