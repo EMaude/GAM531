@@ -7,6 +7,9 @@
 
 using namespace std;
 
+#include <string>
+#include <iostream>
+
 #include "vgl.h"
 #include "LoadShaders.h"
 #include "glm\glm.hpp"
@@ -20,7 +23,11 @@ GLuint VAOs[NumVAOs];
 GLuint Buffers[NumBuffers];
 GLuint location;
 
-const GLuint NumVertices = 8;
+const GLuint NumVertices = 482 + 1; //ad one as faces starts looking at 1
+const GLuint NumFaces = 960;;
+
+GLfloat vertices[NumVertices][3];
+GLuint faces[NumFaces][3];
 
 float rotate_value = 0;
 
@@ -33,6 +40,7 @@ float camz = 0.5f;
 float camx = 0.0f;
 float camy = 0.0f;
 
+int load(std::string filename, GLfloat vertexArray[][3], GLuint faces[][3]);
 
 void keyboard(unsigned char key, int x, int y)
 {
@@ -69,26 +77,20 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 
-void drawCube()
+void draw()
 {
-	GLubyte top_face[] = { 0, 1, 2, 3 };
-	GLubyte bottom_face[] = { 4, 5, 6, 7 };
-	GLubyte left_face[] = { 0, 4, 7, 3 };
-	GLubyte right_face[] = { 1, 5, 6, 2 };
-	GLubyte front_face[] = { 2, 3, 7, 6 };
-	GLubyte back_face[] = { 2, 3, 7, 6 };
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, top_face);
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, bottom_face);
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, left_face);
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, right_face);
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, front_face);
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, back_face);
+	for (int i = 0; i < NumFaces; i++)
+	{
+		glDrawElements(GL_LINE_LOOP, 3, GL_UNSIGNED_INT, faces[i]);
+	}
 }
 
 //---------------------------------------------------------------------
 // Setting up our pipeline and preparing to draw 
 void init(void)
 {
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 	//Defining the name of our shader files
 	ShaderInfo shaders[] = {
 		{ GL_VERTEX_SHADER, "triangles.vert" },
@@ -103,30 +105,32 @@ void init(void)
 	//Defining (in RAM NOT VRAM) the coordinates and colors of the vertices.
 	//The coordinates are specified on X-Y plane
 	//In the following section, we will transfer these data from RAM into VRAM
+
+	int state = load("Sphere.txt", vertices, faces);
+	if (state != 1)
+	{
+		std::cout << "ERROR: Cannot load obj data - Exiting" << std::endl;
+		exit(state);
+	}
+	/*
+	for (int i = 0; i < NumVertices; i++) //DEBUG Vertex Data dump
+	{ 
+		std::cout << "Vertex Number: " << i << " : " << vertices[i][0] << " : " << vertices[i][1] << " : " << vertices[i][2] << std::endl;
+	}
 	
+	
+	for (int i = 0; i < NumFaces; i++) //DEBUG Faces Data dump
+	{
+		std::cout << faces[i][0] << " : " << faces[i][1] << " : " << faces[i][2] << std::endl;
+	}
+	*/
+
+
 	// Coordinates of vertices (Square)
-	GLfloat vertices[NumVertices][3] = {
-		{-1.0, -1.0,  1.0},
-		{1.0, -1.0,  1.0},
-		{1.0,  1.0,  1.0 },
-		{-1.0,  1.0,  1.0},
-
-		{-1.0, -1.0, -1.0},
-		{1.0, -1.0, -1.0 },
-		{1.0,  1.0, -1.0 },
-		{-1.0,  1.0, -1.0},
-	};
 	
 
-	GLfloat colorData[NumVertices][3] = {
-		{1, 0, 0},
-		{0, 1, 0},
-		{0, 0, 1},
-		{1, 0, 0},
-		{0, 1, 0},
-		{0, 0, 1},
-		{1, 0, 0},
-		{0, 1, 0}
+	GLfloat colorData[1][3] = {
+		{0, 0, 0}
 	};
 	
 
@@ -189,11 +193,11 @@ void drawScene(void)
 	//Starting the pipeline
 	//Rendering the sun
 	//glDrawArrays(GL_TRIANGLE_FAN, 0, generated_vertices);
-	drawCube();
+	draw();
 
 	//Transformations required to render the earth
 	model_view = glm::rotate(model_view, rotate_value, glm::vec3(0.0, 0.0, 1.0f));
-	model_view = glm::translate(model_view, glm::vec3(6.0, 0.0, 0.0));
+	model_view = glm::translate(model_view, glm::vec3(20.0, 0.0, 0.0));
 	model_view = glm::rotate(model_view, 4*rotate_value, glm::vec3(0.0, 0.0, 1.0f));
 	model_view = glm::scale(model_view, glm::vec3(0.5, 0.5, 0.5));
 
@@ -202,13 +206,13 @@ void drawScene(void)
 
 	//Rendering the earth
 	//glDrawArrays(GL_TRIANGLE_FAN, 0, generated_vertices);
-	drawCube();
+	draw();
 
 
 	//Transformations required to render the moon
 	model_view = glm::scale(model_view, glm::vec3(0.7, 0.7, 0.7));
 	model_view = glm::rotate(model_view, -20*rotate_value, glm::vec3(0.0, 0.0, 1.0f));
-	model_view = glm::translate(model_view, glm::vec3(4.0, 0.0, 0.0));
+	model_view = glm::translate(model_view, glm::vec3(10.0, 0.0, 0.0));
 	model_view = glm::rotate(model_view, -30*rotate_value, glm::vec3(0.0, 0.0, 1.0f));
 
 	//Sending the generated transformation matrix to the vertex shader
@@ -216,7 +220,7 @@ void drawScene(void)
 
 	//Rendering the moon
 	//glDrawArrays(GL_TRIANGLE_FAN, 0, generated_vertices);
-	drawCube();
+	draw();
 
 
 
@@ -250,7 +254,7 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA);
 	glutInitWindowSize(1024, 1024);
-	glutCreateWindow("Lab Two: Solar System");
+	glutCreateWindow("Lab Four: OBJ Loader");
 	glewInit();	
 
 	//init function is defined above
