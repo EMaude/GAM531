@@ -1,0 +1,13 @@
+﻿  Triangles.cpp
+e:\maude\documents\github\gam531\lab4_better\firstexample\triangles.cpp(60): warning C4305: '-=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\lab4_better\firstexample\triangles.cpp(65): warning C4305: '+=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\lab4_better\firstexample\triangles.cpp(70): warning C4305: '-=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\lab4_better\firstexample\triangles.cpp(75): warning C4305: '+=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\lab4_better\firstexample\triangles.cpp(240): warning C4305: '+=': truncation from 'double' to 'float'
+  objParser.cpp
+e:\maude\documents\github\gam531\lab4_better\firstexample\objparser.cpp(64): warning C4018: '<=': signed/unsigned mismatch
+e:\maude\documents\github\gam531\lab4_better\firstexample\objparser.cpp(98): warning C4018: '<=': signed/unsigned mismatch
+  Generating Code...
+e:\maude\documents\github\gam531\lab4_better\firstexample\objparser.cpp(116): warning C4715: 'objParser::read': not all control paths return a value
+Debug\LoadShaders.obj : warning LNK4042: object specified more than once; extras ignored
+LINK : fatal error LNK1104: cannot open file 'glew_static_vs2010_d.lib'
