@@ -2,6 +2,7 @@
 
 int objParser::sizesFromFile()
 {
+	///TODO: Make read vertex and faces sizes from file
 	return 0;
 }
 
@@ -14,12 +15,13 @@ objParser::objParser(std::string filename, GLuint NumVertices, GLuint NumFaces)
 	this->file.open(this->filename);
 }
 
-objParser::objParser(std::string filename)
+objParser::objParser(std::string filename) 
 {
 	this->filename = filename;
 	this->file.open(this->filename);
 	
 	//sizesFromFile();
+
 	std::cout << "This constructor is not done, and will cause stupid things to happen" << std::endl;
 }
 
@@ -111,12 +113,15 @@ int objParser::read(GLfloat vertexArray[][3], GLuint faces[][3])
 				}
 			}
 		}
-		return -1;
+		std::cout << "Done Reading File" << std::endl;
+		return 1;
 	}
+	return -1;
 }
 
 int objParser::read(GLfloat *vertexArray, GLuint *faces)
 {
+	///TODO: Create Arrays and read file
 	std::cout << "This read is not done, use the other one" << std::endl;
 	return 0;
 }
