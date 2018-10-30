@@ -1,32 +1,7 @@
-﻿  LoadShaders.cpp
-  Triangles.cpp
-c:\users\emaude\documents\gam531\lab4_better\firstexample\triangles.cpp(60): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\emaude\documents\gam531\lab4_better\firstexample\triangles.cpp(65): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\emaude\documents\gam531\lab4_better\firstexample\triangles.cpp(70): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\emaude\documents\gam531\lab4_better\firstexample\triangles.cpp(75): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\emaude\documents\gam531\lab4_better\firstexample\triangles.cpp(240): warning C4305: '+=': truncation from 'double' to 'float'
-  objParser.cpp
-c:\users\emaude\documents\gam531\lab4_better\firstexample\objparser.cpp(66): warning C4018: '<=': signed/unsigned mismatch
-c:\users\emaude\documents\gam531\lab4_better\firstexample\objparser.cpp(100): warning C4018: '<=': signed/unsigned mismatch
-  Generating Code...
-  LINK : C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\FirstExample.exe not found or not built by the last incremental link; performing full link
+﻿  CameraHandler.cpp
 Debug\LoadShaders.obj : warning LNK4042: object specified more than once; extras ignored
-MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'libcmtd.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew_static_vs2010_d.lib(glew.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'glew_static_vs2010_d.lib(glew.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_callbacks.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_callbacks.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_cursor.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_cursor.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_display.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_display.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_font.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_font.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_font_data.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_font_data.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_init.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_init.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_input_devices.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_input_devices.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_joystick.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_joystick.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_main.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_main.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_menu.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_menu.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_spaceball.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_spaceball.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_state.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_state.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_stroke_mono_roman.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_stroke_mono_roman.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_stroke_roman.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_stroke_roman.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_structure.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_structure.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-freeglut_static_vs2010_d.lib(freeglut_window.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_window.obj)' or at 'C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\vc100.pdb'; linking object as if no debug info
-  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\Lab4_Better\Debug\FirstExample.exe
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+CameraHandler.obj : error LNK2001: unresolved external symbol "private: static struct glm::tvec3<float,0> CameraHandler::m_pos" (?m_pos@CameraHandler@@0U?$tvec3@M$0A@@glm@@A)
+CameraHandler.obj : error LNK2001: unresolved external symbol "private: static unsigned int CameraHandler::cam_matrix_location_in_vram" (?cam_matrix_location_in_vram@CameraHandler@@0IA)
+ProjectionHandler.obj : error LNK2001: unresolved external symbol "private: static unsigned int ProjectionHandler::projection_matrix_location_in_vram" (?projection_matrix_location_in_vram@ProjectionHandler@@0IA)
+C:\Users\Emaude\Documents\GAM531\Testing\Debug\FirstExample.exe : fatal error LNK1120: 3 unresolved externals

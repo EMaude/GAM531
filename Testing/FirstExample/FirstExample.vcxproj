@@ -85,8 +85,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraHandler.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="LoadShaders.cpp" />
     <ClCompile Include="objParser.cpp" />
+    <ClCompile Include="ProjectionHandler.cpp" />
     <ClCompile Include="Triangles.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Dropbox\oglpg-8th-edition\include\LoadShaders.h" />
+    <ClInclude Include="CameraHandler.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="objParser.h" />
+    <ClInclude Include="ProjectionHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Object Include="Debug\LoadShaders.obj" />

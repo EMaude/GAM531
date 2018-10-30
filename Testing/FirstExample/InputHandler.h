@@ -1,12 +1,16 @@
+#ifndef INPUTHANDLER_H
+#define INPUTHANDLER_H
+
 #include "vgl.h"
 #include "glm\glm.hpp"
 
 #include "CameraHandler.h"
 
-static class InputHandler {
+class InputHandler {
     private:
 
     public:
-    void keyboard(unsigned char key, int x, int y);
-
+    static void keyboard(unsigned char key, int x, int y);
 };
+
+#endif

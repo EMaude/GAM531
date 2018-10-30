@@ -1,6 +1,6 @@
 #include "ProjectionHandler.h"
 
-void ProjectionHandler::init()
+void ProjectionHandler::init(GLuint& program)
 {
     projection_matrix_location_in_vram = glGetUniformLocation(program, "projection_matrix");
 }

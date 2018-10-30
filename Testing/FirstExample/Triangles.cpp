@@ -39,12 +39,6 @@ GLuint faces[NumFaces][3];
 
 float rotate_value = 0;
 
-//location of matrices inside VRAM
-
-CameraHandler::update(glm::vec3(0.0, 0.0, 1.0f));
-
-
-
 
 void draw()
 {
@@ -121,8 +115,8 @@ void init(void)
 	//Retrieving the location of the matrices from VRAM and storing them inside these variables
 	location = glGetUniformLocation(program, "model_matrix");
 	
-	CameraHandler::init();
-	ProjectionHandler::init();
+	CameraHandler::init(program);
+	ProjectionHandler::init(program);
 }
 
 
