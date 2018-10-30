@@ -15,7 +15,12 @@ using namespace std;
 #include "glm\glm.hpp"
 #include "glm\gtc\matrix_transform.hpp"
 
+//-- Custom Headers --// 
 #include "objParser.h"
+#include "CameraHandler.h"
+#include "InputHandler.h"
+#include "ProjectionHandler.h"
+
 
 enum VAO_IDs { Triangles, NumVAOs };
 enum Buffer_IDs { ArrayBuffer, NumBuffers };
@@ -35,48 +40,10 @@ GLuint faces[NumFaces][3];
 float rotate_value = 0;
 
 //location of matrices inside VRAM
-GLuint cam_matrix_location_in_vram;
-GLuint projection_matrix_location_in_vram;
 
-float camz = 0.5f;
-float camx = 0.0f;
-float camy = 0.0f;
+CameraHandler::update(glm::vec3(0.0, 0.0, 1.0f));
 
 
-
-void keyboard(unsigned char key, int x, int y)
-{
-	if (key == '+')
-	{
-		camz -= 0.01f;
-	}
-	if (key == '-')
-	{
-		camz += 0.01f;
-	}
-
-	if (key == 'a')
-	{
-		camx -= 0.01;
-	}
-
-	if (key == 'd')
-	{
-		camx += 0.01;
-	}
-
-	if (key == 'w')
-	{
-		camy -= 0.01;
-	}
-
-	if (key == 's')
-	{
-		camy += 0.01;
-	}
-
-	glutPostRedisplay();
-}
 
 
 void draw()
@@ -153,8 +120,9 @@ void init(void)
 	
 	//Retrieving the location of the matrices from VRAM and storing them inside these variables
 	location = glGetUniformLocation(program, "model_matrix");
-	cam_matrix_location_in_vram = glGetUniformLocation(program, "camera_matrix");
-	projection_matrix_location_in_vram = glGetUniformLocation(program, "projection_matrix");
+	
+	CameraHandler::init();
+	ProjectionHandler::init();
 }
 
 
@@ -169,20 +137,12 @@ void drawScene(void)
 	//Clear the screen and preparing to draw
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	CameraHandler::draw();
 
-
-	//Setting up camera matrix and initialize the camera_matrix in VRAM	
-	glm::mat4 camera_matrix = glm::lookAt(glm::vec3(camx, camy, camz), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-	glUniformMatrix4fv(cam_matrix_location_in_vram, 1, GL_FALSE, &camera_matrix[0][0]);
+	
 
 	//Setting up projection matrix and initialize the projection_matrix in VRAM
-	glm::mat4 projection_matrix = glm::frustum(-0.01f, +0.01f, -0.01f, +0.01f, 0.01f, 10.0f);
-	glUniformMatrix4fv(projection_matrix_location_in_vram, 1, GL_FALSE, &projection_matrix[0][0]);
-
-
-
-
-
+	ProjectionHandler::draw();
 
 	//Creating rotation matrix using glm livrary. In this case, rotating rotat_value degree about Z axis (0, 0, 1)
 	
@@ -269,11 +229,9 @@ int main(int argc, char** argv)
 	//Read the comments for the runEveryFrame function above
 	glutIdleFunc(runEveryFrame);
 
-	glutKeyboardFunc(keyboard);
+	glutKeyboardFunc(InputHandler::keyboard);
 
 	//glutMainLoop enters the event processing loop
 	glutMainLoop();
-	
-	
 
 }
