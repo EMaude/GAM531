@@ -1,9 +1,13 @@
 #include "CameraHandler.h"
 
 
-void CameraHandler::init(GLuint& program)
+CameraHandler::CameraHandler()
 {
 	m_pos = glm::vec3(0.0f, 0.0f, 1.0f);
+}
+
+void CameraHandler::init(GLuint& program)
+{
     cam_matrix_location_in_vram = glGetUniformLocation(program, "camera_matrix");
 }
 

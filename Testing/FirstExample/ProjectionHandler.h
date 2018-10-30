@@ -7,11 +7,10 @@
 
 class ProjectionHandler{
     private:
-    static GLuint projection_matrix_location_in_vram;
+		GLuint projection_matrix_location_in_vram;
 
     public:
-    static void init(GLuint& program);
-    static void draw();
+		void init(GLuint& program);
+		void draw();
 };
-
 #endif

@@ -6,16 +6,18 @@
 #include "glm\glm.hpp"
 #include "glm\gtc\matrix_transform.hpp"
 
+
 class CameraHandler{
     private:
-    static glm::vec3 m_pos;
-    static GLuint cam_matrix_location_in_vram;
+    glm::vec3 m_pos;
+    GLuint cam_matrix_location_in_vram;
 
     public:
-    static void init(GLuint& program);
-    static void draw();
-	static void update(glm::vec3);
-    static glm::vec3 getPos();
+	CameraHandler();
+    void init(GLuint& program);
+    void draw();
+	void update(glm::vec3);
+    glm::vec3 getPos();
 };
 
 #endif

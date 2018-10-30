@@ -27,10 +27,10 @@
     <ClCompile Include="CameraHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
+    <ClCompile Include="ProjectionHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectionHandler.cpp">
+    <ClCompile Include="ModelHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,10 +52,10 @@
     <ClInclude Include="CameraHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputHandler.h">
+    <ClInclude Include="ProjectionHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectionHandler.h">
+    <ClInclude Include="ModelHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,9 +18,8 @@ using namespace std;
 //-- Custom Headers --// 
 #include "objParser.h"
 #include "CameraHandler.h"
-#include "InputHandler.h"
 #include "ProjectionHandler.h"
-
+#include "ModelHandler.h"
 
 enum VAO_IDs { Triangles, NumVAOs };
 enum Buffer_IDs { ArrayBuffer, NumBuffers };
@@ -28,8 +27,6 @@ enum Attrib_IDs { vPosition = 0 };
 
 GLuint VAOs[NumVAOs];
 GLuint Buffers[NumBuffers];
-GLuint location;
-
 
 const GLuint NumVertices = 482 + 1; //add one as faces starts looking at 1
 const GLuint NumFaces = 960;
@@ -37,10 +34,49 @@ const GLuint NumFaces = 960;
 GLfloat vertices[NumVertices][3];
 GLuint faces[NumFaces][3];
 
-float rotate_value = 0;
+ModelHandler model;
+CameraHandler camera;
+ProjectionHandler projection;
 
+void keyboard(unsigned char key, int x, int y)
+{
+	glm::vec3 pos = camera.getPos();
 
-void draw()
+	if (key == '+')
+	{
+		pos.z -= 0.01f;
+	}
+	if (key == '-')
+	{
+		pos.z += 0.01f;
+	}
+
+	if (key == 'a')
+	{
+		pos.x -= 0.01;
+	}
+
+	if (key == 'd')
+	{
+		pos.x += 0.01;
+	}
+
+	if (key == 'w')
+	{
+		pos.y -= 0.01;
+	}
+
+	if (key == 's')
+	{
+		pos.y += 0.01;
+	}
+
+	camera.update(pos);
+
+	glutPostRedisplay();
+}
+
+void draw() ///TODO: move into model handler
 {
 	for (int i = 0; i < NumFaces; i++)
 	{
@@ -65,9 +101,8 @@ void init(void)
 	GLuint program = LoadShaders(shaders);
 	glUseProgram(program);	//My Pipeline is set up
 
-
+	///TODO: move into model handler
 	//Read From obj File
-
 	objParser obj("Sphere.txt", NumVertices, NumFaces);
 
 	int state = obj.read(vertices, faces);
@@ -95,7 +130,7 @@ void init(void)
 		{0, 0, 0}
 	};
 	
-
+	///TODO: move into model handler
 	//Allocating buffers in VRAM and pushing vertex data (position and color) into the data.
 	//In the following section, we will transfer the vertex data from RAM into VRAM using OpenGL library
 	//Do NOT go inside the details. I will teach them in details next week.
@@ -113,10 +148,9 @@ void init(void)
 	glEnableVertexAttribArray(1);
 	
 	//Retrieving the location of the matrices from VRAM and storing them inside these variables
-	location = glGetUniformLocation(program, "model_matrix");
-	
-	CameraHandler::init(program);
-	ProjectionHandler::init(program);
+	model.init(program);
+	camera.init(program);
+	projection.init(program);
 }
 
 
@@ -131,54 +165,9 @@ void drawScene(void)
 	//Clear the screen and preparing to draw
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	CameraHandler::draw();
-
-	
-
-	//Setting up projection matrix and initialize the projection_matrix in VRAM
-	ProjectionHandler::draw();
-
-	//Creating rotation matrix using glm livrary. In this case, rotating rotat_value degree about Z axis (0, 0, 1)
-	
-	glm::mat4 model_view = glm::scale(glm::mat4(1.0), glm::vec3(0.1, 0.1, 0.1));
-	//The following function passes the generated rotation function into the vertex-shader
-	//I will explain this in details next week.
-	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
-
-	//Starting the pipeline
-	//Rendering the sun
-	//glDrawArrays(GL_TRIANGLE_FAN, 0, generated_vertices);
-	draw();
-
-	//Transformations required to render the earth
-	model_view = glm::rotate(model_view, rotate_value, glm::vec3(0.0, 0.0, 1.0f));
-	model_view = glm::translate(model_view, glm::vec3(20.0, 0.0, 0.0));
-	model_view = glm::rotate(model_view, 4*rotate_value, glm::vec3(0.0, 0.0, 1.0f));
-	model_view = glm::scale(model_view, glm::vec3(0.5, 0.5, 0.5));
-
-	//Sending the generated transformation matrix to the vertex shader
-	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
-
-	//Rendering the earth
-	//glDrawArrays(GL_TRIANGLE_FAN, 0, generated_vertices);
-	draw();
-
-
-	//Transformations required to render the moon
-	model_view = glm::scale(model_view, glm::vec3(0.7, 0.7, 0.7));
-	model_view = glm::rotate(model_view, -20*rotate_value, glm::vec3(0.0, 0.0, 1.0f));
-	model_view = glm::translate(model_view, glm::vec3(10.0, 0.0, 0.0));
-	model_view = glm::rotate(model_view, -30*rotate_value, glm::vec3(0.0, 0.0, 1.0f));
-
-	//Sending the generated transformation matrix to the vertex shader
-	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
-
-	//Rendering the moon
-	//glDrawArrays(GL_TRIANGLE_FAN, 0, generated_vertices);
-	draw();
-
-
-
+	camera.draw();
+	projection.draw();
+	model.draw();
 
 	//Flush the image onto the window (screen)
 	glFlush();
@@ -191,7 +180,7 @@ void drawScene(void)
 void runEveryFrame()
 {
 	//Increasing our rotation angle
-	rotate_value += 0.001;
+	model.rotate_value += 0.001f;
 
 	//glutpostRedisplay() finction calls the display function in order to re-draw the scene
 	//In here, glutPostRedisplay function is used inside the idle function to re-draw the scene for every frame.
@@ -209,7 +198,7 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA);
 	glutInitWindowSize(1024, 1024);
-	glutCreateWindow("Lab Four: OBJ Loader");
+	glutCreateWindow("Testing: Abstraction");
 	glewInit();	
 
 	//init function is defined above
@@ -223,7 +212,7 @@ int main(int argc, char** argv)
 	//Read the comments for the runEveryFrame function above
 	glutIdleFunc(runEveryFrame);
 
-	glutKeyboardFunc(InputHandler::keyboard);
+	glutKeyboardFunc(keyboard);
 
 	//glutMainLoop enters the event processing loop
 	glutMainLoop();
