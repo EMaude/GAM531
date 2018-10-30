@@ -76,7 +76,7 @@ void drawCube()
 	GLubyte left_face[] = { 0, 4, 7, 3 };
 	GLubyte right_face[] = { 1, 5, 6, 2 };
 	GLubyte front_face[] = { 2, 3, 7, 6 };
-	GLubyte back_face[] = { 2, 3, 7, 6 };
+	GLubyte back_face[] = { 0, 1, 5, 4 };
 	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, top_face);
 	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, bottom_face);
 	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, left_face);
