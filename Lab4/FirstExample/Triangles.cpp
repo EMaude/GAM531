@@ -24,7 +24,7 @@ GLuint Buffers[NumBuffers];
 GLuint location;
 
 const GLuint NumVertices = 482 + 1; //ad one as faces starts looking at 1
-const GLuint NumFaces = 960;;
+const GLuint NumFaces = 960;
 
 GLfloat vertices[NumVertices][3];
 GLuint faces[NumFaces][3];
@@ -40,7 +40,6 @@ float camz = 0.5f;
 float camx = 0.0f;
 float camy = 0.0f;
 
-int load(std::string filename, GLfloat vertexArray[][3], GLuint faces[][3]);
 
 void keyboard(unsigned char key, int x, int y)
 {

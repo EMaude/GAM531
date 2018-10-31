@@ -1,10 +1,11 @@
-﻿  CameraHandler.cpp
+﻿  ModelHandler.cpp
   Triangles.cpp
-e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(59): warning C4305: '-=': truncation from 'double' to 'float'
-e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(64): warning C4305: '+=': truncation from 'double' to 'float'
-e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(69): warning C4305: '-=': truncation from 'double' to 'float'
-e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(74): warning C4305: '+=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(56): warning C4305: '-=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(61): warning C4305: '+=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(66): warning C4305: '-=': truncation from 'double' to 'float'
+e:\maude\documents\github\gam531\testing\firstexample\triangles.cpp(71): warning C4305: '+=': truncation from 'double' to 'float'
   Generating Code...
+e:\maude\documents\github\gam531\testing\firstexample\modelhandler.cpp(50): warning C4717: 'ModelHandler::draw': recursive on all control paths, function will cause runtime stack overflow
 Debug\LoadShaders.obj : warning LNK4042: object specified more than once; extras ignored
 glew_static_vs2010_d.lib(glew.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'glew_static_vs2010_d.lib(glew.obj)' or at 'E:\maude\Documents\Github\GAM531\Testing\Debug\vc100.pdb'; linking object as if no debug info
 freeglut_static_vs2010_d.lib(freeglut_callbacks.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'freeglut_static_vs2010_d.lib(freeglut_callbacks.obj)' or at 'E:\maude\Documents\Github\GAM531\Testing\Debug\vc100.pdb'; linking object as if no debug info

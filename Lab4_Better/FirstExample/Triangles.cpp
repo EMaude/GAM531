@@ -28,9 +28,12 @@ GLuint location;
 
 const GLuint NumVertices = 482 + 1; //add one as faces starts looking at 1
 const GLuint NumFaces = 960;
+const GLuint NumTvert = 559 + 1; //add one as faces starts looking at 1
 
 GLfloat vertices[NumVertices][3];
 GLuint faces[NumFaces][3];
+GLfloat textvert[NumTvert][2];
+GLuint textfaces[NumFaces][3];
 
 float rotate_value = 0;
 
@@ -107,9 +110,9 @@ void init(void)
 
 	//Read From obj File
 
-	objParser obj("Sphere.txt", NumVertices, NumFaces);
+	objParser obj("Sphere.txt", NumVertices, NumFaces, NumTvert);
 
-	int state = obj.read(vertices, faces);
+	int state = obj.read(vertices, faces, textvert, textfaces);
 	if (state != 1)
 	{
 		std::cout << "ERROR: Cannot load obj data - Exiting" << std::endl;
