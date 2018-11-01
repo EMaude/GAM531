@@ -1,13 +1,13 @@
-﻿  image_DXT.c
+﻿  SOIL.c
+c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\soil.c(1719): warning C4018: '<=': signed/unsigned mismatch
+c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\soil.c(1729): warning C4018: '<': signed/unsigned mismatch
+  image_DXT.c
   image_helper.c
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\image_helper.c(325): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\image_helper.c(366): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\image_helper.c(373): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\image_helper.c(415): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\image_helper.c(422): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  SOIL.c
-c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\soil.c(1719): warning C4018: '<=': signed/unsigned mismatch
-c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\soil.c(1729): warning C4018: '<': signed/unsigned mismatch
   stb_image_aug.c
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\stbi_dds_aug_c.h(362): warning C4018: '>': signed/unsigned mismatch
 c:\users\emaude\documents\gam531\examples\texture_mapping\soil\src\stbi_dds_aug_c.h(366): warning C4018: '>': signed/unsigned mismatch
@@ -25,6 +25,7 @@ c:\users\emaude\documents\gam531\examples\texture_mapping\firstexample\triangles
 c:\users\emaude\documents\gam531\examples\texture_mapping\firstexample\triangles.cpp(281): warning C4305: '+=': truncation from 'double' to 'float'
 c:\users\emaude\documents\gam531\examples\texture_mapping\firstexample\triangles.cpp(285): warning C4305: '-=': truncation from 'double' to 'float'
   Generating Code...
+  LINK : C:\Users\Emaude\Documents\GAM531\Examples\Texture_Mapping\Debug\FirstExample.exe not found or not built by the last incremental link; performing full link
 Debug\image_DXT.obj : warning LNK4042: object specified more than once; extras ignored
 Debug\image_helper.obj : warning LNK4042: object specified more than once; extras ignored
 Debug\LoadShaders.obj : warning LNK4042: object specified more than once; extras ignored
