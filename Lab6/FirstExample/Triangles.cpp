@@ -55,7 +55,7 @@ void draw()
 {
 	for (int i = 0; i < NumFaces; i++)
 	{
-		glDrawElements(GL_LINE_LOOP, 3, GL_UNSIGNED_INT, faces[i]);
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, faces[i]);
 	}
 }
 

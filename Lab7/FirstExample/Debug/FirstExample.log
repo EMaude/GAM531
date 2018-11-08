@@ -1,0 +1,4 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (FirstExample.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Loading_Models_Into_Multiple_Buffers.cpp
+c:\users\emaude\documents\gam531\lab7\firstexample\loading_models_into_multiple_buffers.cpp(95): warning C4305: 'argument': truncation from 'double' to 'float'
+  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\Lab7\Debug\3D_World.exe
