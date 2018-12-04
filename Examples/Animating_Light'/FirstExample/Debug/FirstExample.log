@@ -1,0 +1,15 @@
+﻿  Triangles.cpp
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\angel.h(45): warning C4005: 'BUFFER_OFFSET': macro redefinition
+  c:\users\emaude\documents\gam531\examples\animating_light'\include\vgl.h(55): note: see previous definition of 'BUFFER_OFFSET'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\angel.h(64): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(232): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(235): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(236): warning C4305: '=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(239): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(243): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(248): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(252): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(256): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(260): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\examples\animating_light'\firstexample\triangles.cpp(275): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\Examples\Animating_Light'\Debug\FirstExample.exe
