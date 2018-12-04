@@ -1,0 +1,61 @@
+Practical Final(Thursday) - Texture, Lighting, Particals
+
+Theory Final (Wednesday) 12th:
+
+Structure of OpenGL
+- display function
+- idle
+- keyboard & mouse
+- main
+
+Linear Transform
+- Point 3D
+- Vector
+- Rotation
+- Translation
+- Scale
+
+Intro To 3D graphics
+-!! Rendering (3D to 2D projection)
+-!! Rendering Pipeline (Vertex Shader,(optional)Geometry Shader, Fragment Shader)
+- Graphics Card driver compiles shaders
+
+
+Developing 3D App
+- Setup Pipeline
+- Setup Geometry
+- Setup Transformation
+- Push the "render" button glDrawArrays();
+
+Texture Mapping (not on theory exam)
+- Dice Lab
+- Load Texture into VRAM
+- Set Texture Parameters
+- Set the active texture
+- Apply the texture geometry ( fragment shader )
+
+Game Engine Intro
+- Structure
+- Scene Graph - tree of scene nodes
+- Scene Node
+	- transformation
+	- mesh 
+	- children
+	- Render() - make sure you understand this for the theory exam
+
+Light (Phong Model)
+- Ambiant
+- Diffuse
+	- Positional (Implemented in shaders, but not talked about)
+	- Directional
+- Specular - Glaze
+
+-Color Percived: 
+	- Color of light source
+	- Material of object
+		- Matt or shiny
+		- color
+
+
+
+
