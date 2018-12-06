@@ -51,4 +51,22 @@ Light (Phong Model)
 - Specular - Glaze
 
 
+Partical Flow
+- Properties of particals
+	- Geometry
+	- Spawn Time
+	- Path - Random, Calculation
+	- Spawn Source - Plane, Point
+	- Num Of Particle
+	- Texture
+	- Age
+- Put Particals on gpu, as they are very intensive
+
+Define in ram:
+- Array, Spawn Point
+- Array, Spawn Time
+- Array, Path
+Push to VRAM
+
+
 
