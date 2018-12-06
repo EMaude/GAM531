@@ -1,0 +1,11 @@
+﻿  Triangles.cpp
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(35): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(134): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(260): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(264): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(268): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(272): warning C4305: '-=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(274): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(276): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\emaude\documents\gam531\finalexam\firstexample\triangles.cpp(280): warning C4305: '-=': truncation from 'double' to 'float'
+  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\FinalExam\Debug\FirstExample.exe
