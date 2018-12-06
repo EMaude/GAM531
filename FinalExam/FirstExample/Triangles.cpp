@@ -5,6 +5,15 @@
 //
 ///////////////////////////////////////////////////////////////////////
 
+//Elliot Maude
+//Final Exam
+
+
+//NOTE:
+// Textures Worked before lighting was implemented, Currently both dont work. I think it might be shader related.
+
+
+
 using namespace std;
 
 #include "vgl.h"
@@ -13,6 +22,7 @@ using namespace std;
 #include "glm\gtc\matrix_transform.hpp"
 #include "SOIL.h"
 
+#include <iostream>
 
 enum VAO_IDs { Triangles, NumVAOs };
 enum Buffer_IDs { ArrayBuffer, NumBuffers };
@@ -35,6 +45,13 @@ float rotate_value = 0;
 float camera_distance = 0.1;
 
 GLuint program;
+
+//Lighting
+typedef glm::vec4 point4;
+typedef glm::vec4 color4;
+
+glm::vec3 normals[NumVertices];
+
 
 //---------------------------------------------------------------------
 //
@@ -126,40 +143,78 @@ void init(void)
 	program = LoadShaders(shaders);
 	glUseProgram(program);	//My Pipeline is set up
 
-	GLfloat vertices[NumVertices][2] = {
-		{ -0.90, -0.90 }, // Square
-		{ 0.9, -0.9 },
-		{ 0.90, 0.9 },
-		{ -0.9, 0.9 }
+	GLfloat vertices[NumVertices][3] = {
+		{ -0.90, -0.90, 0.0 }, // Square
+		{ 0.9, -0.9, 0.0 },
+		{ 0.90, 0.9, 0.0 },
+		{ -0.9, 0.9, 0.0 }
 	};
 
-	GLfloat colorData[NumVertices][3] = {
-		{ 1,0,0 }, // color for vertices
-		{ 0,1,0 },
-		{ 0,0,1 },
-		{ 1,1,1 }
-	};
-	
+/* LIGHTING
+	//Normals
+	normals[0] = { 0, 0, 1 }; 
+	normals[1] = { 0, 0, 1 }; 
+	normals[2] = { 0, 0, 1 };
+	normals[3] = { 0, 0, 1 };
+	*/
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 
 	glGenBuffers(3, Buffers);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices),	vertices, GL_STATIC_DRAW);
 	glBindAttribLocation(program, 0, "vPosition");
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(0);
 
-	
+	//Lighting
 	glBindBuffer(GL_ARRAY_BUFFER, Buffers[1]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(colorData), colorData, GL_STATIC_DRAW);
-	glBindAttribLocation(program, 1, "vertexColor");
+	glBufferData(GL_ARRAY_BUFFER, sizeof(normals), normals, GL_STATIC_DRAW);
+	glBindAttribLocation(program, 1, "vNormal");
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
 	glEnableVertexAttribArray(1);
-	
+
+
+	// Initialize shader lighting parameters
+	point4 light_position(0.0, 0.0, 2.0, 0.0); //Position of diffuse light
+	color4 light_ambient(0.2, 0.2, 0.2, 1.0);
+	color4 light_diffuse(1.0, 0.0, 0.0, 1.0); //Intensity or Lumination
+	color4 light_specular(1.0, 1.0, 1.0, 1.0);
+
+	color4 material_ambient(1.0, 0.0, 1.0, 1.0);
+	//color4 material_diffuse(1.0, 0.8, 0.0, 1.0);
+	color4 material_diffuse(1.0, 1.0, 1.0, 1.0);
+	color4 material_specular(1.0, 0.0, 1.0, 1.0);
+	float  material_shininess = 5.0;
+
+	color4 ambient_product = light_ambient * material_ambient;
+	color4 diffuse_product = light_diffuse * material_diffuse;
+	color4 specular_product = light_specular * material_specular;
+
+	GLfloat tmp1[4] = { ambient_product.r, ambient_product.g, ambient_product.b, ambient_product.a };
+	GLfloat tmp2[4] = { diffuse_product.r, diffuse_product.g, diffuse_product.b, diffuse_product.a };
+	GLfloat tmp3[4] = { specular_product.r, specular_product.g, specular_product.b, specular_product.a };
+
+	glUniform4fv(glGetUniformLocation(program, "AmbientProduct"), 1, tmp1);
+	glUniform4fv(glGetUniformLocation(program, "DiffuseProduct"), 1, tmp2);
+	glUniform4fv(glGetUniformLocation(program, "SpecularProduct"), 1, tmp3);
+
+	GLfloat tmp_p[4] = { light_position.x, light_position.y, light_position.z, light_position.w };
+
+	glUniform4fv(glGetUniformLocation(program, "LightPosition"), 1, tmp_p);
+
+	glUniform1f(glGetUniformLocation(program, "Shininess"), material_shininess);
+
+
+
+
+
+	glEnable(GL_DEPTH_TEST);
 	location = glGetUniformLocation(program, "model_matrix");
 	location2 = glGetUniformLocation(program, "camera_matrix");
 	location3 = glGetUniformLocation(program, "projection_matrix");
-	
 }
 
 
@@ -171,7 +226,7 @@ void init(void)
 void
 display(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glm::mat4 model_view = glm::translate(glm::mat4(1.0), glm::vec3(5, 0, 0));
 	model_view = glm::scale(model_view, glm::vec3(2.0, 2.0, 1.0));
@@ -181,7 +236,7 @@ display(void)
 	glUniformMatrix4fv(location2, 1, GL_FALSE, &camera_matrix[0][0]);
 
 	glm::mat4 projection_matrix = glm::frustum(-1.0, +1.0, -1.0, +1.0, 0.01, 10.0);
-	glUniformMatrix4fv(location3, 1, GL_FALSE, &projection_matrix[0][0]);
+	glUniformMatrix4fv(location3, 1, GL_TRUE, &projection_matrix[0][0]);
 
 
 	//The texture coordinates for the first square:
@@ -207,9 +262,9 @@ display(void)
 	//We have two textures defined in VRAM, which one would you like to be applied?
 	//Lets say the first one.
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
-	GLuint tmp[4] = {0, 1, 2, 3};
+	GLuint faces[4] = {0, 1, 2, 3};
 	//Rendering the first square
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, tmp);
+	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, faces);
 	//Done !!!
 
 	//Now, rendering the second square with the second texture applied. (The texture that was loaded from file)
@@ -231,21 +286,21 @@ display(void)
 	model_view = glm::scale(model_view, glm::vec3(2.0, 2.0, 1.0));
 	//rotate second square
 	model_view = glm::rotate(model_view, 60.0f, glm::vec3(1.0f, 0.5f, 0.0f));
-	glUniformMatrix4fv(location, 1, GL_FALSE, &model_view[0][0]);
+	glUniformMatrix4fv(location, 1, GL_TRUE, &model_view[0][0]);
 
 	//We have two textures defined in VRAM, which one would you like to be applied?
 	//Now, we use the second one.
 	glBindTexture(GL_TEXTURE_2D, texture[1]);
 	//Rendering the first square
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, tmp);
+	glDrawElements(GL_TRIANGLES, 4, GL_UNSIGNED_INT, faces);
 	//Done !!!
 
-	glFlush();
+	glutSwapBuffers();
 }
 
 void idle()
 {
-	
+	glutPostRedisplay();
 }
 
 //---------------------------------------------------------------------
@@ -282,21 +337,50 @@ void keyboardHandler(unsigned char key, int x, int y)
 
 	glutPostRedisplay();
 }
+void
+reshape(int width, int height)
+{
+	glViewport(0, 0, width, height);
 
+	GLfloat left = -2.0, right = 2.0;
+	GLfloat top = 2.0, bottom = -2.0;
+	GLfloat zNear = 0.001, zFar = 20.0;
+
+	GLfloat aspect = GLfloat(width) / height;
+
+	if (aspect > 1.0) {
+		left *= aspect;
+		right *= aspect;
+	}
+	else {
+		top /= aspect;
+		bottom /= aspect;
+	}
+
+	glm::mat4 projection = glm::ortho(left, right, bottom, top, zNear, zFar);
+
+	glUniformMatrix4fv(location3, 1, GL_TRUE, &projection[0][0]);
+}
 int
 main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(512, 512);
-	glutCreateWindow("Hello World");
+	glutInitContextVersion(3, 2);
+	glutInitContextProfile(GLUT_CORE_PROFILE);
+	glutCreateWindow("Final Exam");
+	glewExperimental = GL_TRUE;
+
+	GLenum err = glGetError();
+	std::cout << err;
 
 	glewInit();	//Initializes the glew and prepares the drawing pipeline.
 
 	init();
 
 	glutDisplayFunc(display);
-
+	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboardHandler);
 
 	glutIdleFunc(idle);
