@@ -1,0 +1,10 @@
+﻿  Triangles.cpp
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\angel.h(45): warning C4005: 'BUFFER_OFFSET': macro redefinition
+  c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\include\vgl.h(55): note: see previous definition of 'BUFFER_OFFSET'
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\angel.h(64): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\triangles.cpp(53): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\triangles.cpp(213): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\triangles.cpp(216): warning C4305: '-=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\triangles.cpp(217): warning C4305: '=': truncation from 'double' to 'GLfloat'
+c:\users\emaude\documents\gam531\final review\rendering_light_on_polygons_using_triangles\firstexample\triangles.cpp(232): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\Final Review\Rendering_Light_On_Polygons_Using_Triangles\Debug\FirstExample.exe

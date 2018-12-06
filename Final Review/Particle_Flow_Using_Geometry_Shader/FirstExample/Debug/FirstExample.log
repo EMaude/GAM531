@@ -1,0 +1,3 @@
+﻿  Triangles.cpp
+c:\users\emaude\documents\gam531\final review\particle_flow_using_geometry_shader\firstexample\triangles.cpp(81): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+  FirstExample.vcxproj -> C:\Users\Emaude\Documents\GAM531\Final Review\Particle_Flow_Using_Geometry_Shader\Debug\FirstExample.exe
